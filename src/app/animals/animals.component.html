@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header">Animals List</div>
+    <div class="card-body">
+  <input type="text" (keypress)="filterData(anilAge)" [(ngModel)]="anilAge"/>
+
+  <h1>Filtered as per number of rooms {{anilAge}}</h1>
+    <div class="table-responsive">
+        <table *ngIf="animals.length" class="table table-dark table-responsive">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Brief-Description</th>
+                  <th scope="col">Age</th>
+                  <th scope="col"><button class="btn btn-primary"
+                    (click)="imageVisibility()">{{showImage ? 'Hide' : 'Show'}} Image</button></th>
+                  <th scope="col">Quantity</th> 
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let animal of filteredAnil;let i = index">
+                  <td>{{animal.id}}</td>
+                  <td>{{animal.name}}</td>
+                    <td>{{animal.brief_description}}</td>     
+                    <td>{{animal.age}}</td>
+                    <td><img *ngIf="showImage"
+                      [src]='animal.imageUrl'
+                      [title]="animal.id"
+                      [style.margin.px]="imageMargin"
+                      [style.width.px]="imageWidth"
+                      [style.height.px]="imageHeight"
+                      /></td>
+                </tr>
+              </tbody>
+            </table>
+    
+        </div>
+    </div>
+    </div>

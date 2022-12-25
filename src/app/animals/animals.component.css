@@ -1,0 +1,9 @@
+/*img {
+    height: 100px;
+    width: 100px;
+}*/
+.card{
+    background-color: yellow;
+    align-items: center;
+    height: 100%;
+}

@@ -1,0 +1,42 @@
+<div class="card">
+    Product-List
+    <div class="card-header">{{pageTitle}}</div>
+    <div class="card-body">
+  <input type="text" (keypress)="filterData(productId)" [(ngModel)]="productId"/>
+
+  <h1>Filtered as per number of price {{productId}}</h1>
+    <div class="table-responsive">
+        <table *ngIf="products.length" class="table table-dark table-responsive">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col"><button class="btn btn-primary"
+                    (click)="imageVisibility()">{{showImage ? 'Hide' : 'Show'}} Image</button></th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of filteredProduct;let i = index">
+                  <td>{{product.id}}</td>
+                  <td (click)="onSelect(product)">{{product.name | uppercase}}</td>
+                  <td>{{product.price | currency:'INR'}}</td>     
+                  <td><img *ngIf="showImage"
+                      [src]='product.imageUrl'
+                      [title]="product.id"
+                      [style.margin.px]="imageMargin"
+                      [style.width.px]="imageWidth"
+                      [style.height.px]="imageHeight"
+                      /></td>
+                  <td>{{product.category}}</td>
+                  <td><app-star [rating]='product.rating' [title]="product.rating" (ratingClicked)="onRatingClicked($event)"></app-star></td>
+                  <td><input type="number" min = 0 value="0" [(ngModel)]="product.quantity"/></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
